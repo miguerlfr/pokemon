@@ -1,10 +1,10 @@
-import Compra from "../components/Compra.vue"
-import Venta from "../components/Venta.vue"
+import Pokedex from "../components/Pokedex.vue"
+import Juego from "../components/Juego.vue"
 import { createRouter, createWebHashHistory } from "vue-router"
 
 const routes = [
-    { path: "/compra", component: Compra },
-    { path: "/", component: Venta },
+    { path: "/pokedex", component: Pokedex },
+    { path: "/", component: Juego },
 ]
 
 export const router = createRouter({
