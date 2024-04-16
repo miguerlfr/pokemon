@@ -11,9 +11,10 @@
 
     <q-drawer v-model="leftDrawerOpen" side="left" overlay behavior="mobile" bordered>
       <div class="drawer-links">
-        <router-link class="b" to="/pokedex">Pokedex</router-link><br />
-        <router-link class="b" to="/">Juego</router-link>
-      </div>
+        <img src="./img/pikachuDeTela.png">
+          <router-link class="b" to="/pokedex">Pokedex</router-link><br />
+          <router-link class="b" to="/">Juego</router-link>
+        </div>
     </q-drawer>
 
     <q-page-container class="page">
@@ -28,30 +29,65 @@
         </q-toolbar-title>
       </q-toolbar>
     </q-footer>
+    <div class="background-container">
+    <!-- Imágenes duplicadas generadas dinámicamente -->
+    <div class="displayFlex" v-for="index in numberOfImages" :key="index">
+      <img class="barra" src="./img/barra.png">
+    </div>
+  </div>
 
   </q-layout>
 </template>
 
 <script setup>
 import { ref } from "vue"
-import axios from "axios"
 
 const leftDrawerOpen = ref(false);
 
 const toggleLeftDrawer = () => {
   leftDrawerOpen.value = !leftDrawerOpen.value;
 };
-
+const numberOfImages = ref(1000);
 </script>
 
 <style scoped>
+.background-container {
+  border: 1px solid red;
+  height: 20vh;  
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  flex-wrap: wrap;
+  overflow-y: hidden;
+  height: 100vh;
+}
+
+.barra {
+  width: 140px;
+}
+
+.displayFlex {
+  flex-wrap: wrap;
+}
+
 .b {
-  color: black !important;
+  color: blue !important;
 }
 
 .drawer-links {
   text-align: center !important;
-  font-size: 20px !important;; /* Centra los enlaces horizontalmente */
+  font-size: 20px !important;
+  /* Centra los enlaces horizontalmente */
+  overflow: hidden;
 }
 
+.copy {
+  margin-bottom: 15px;
+}
+
+.pokeBola {
+  margin-top: -8px;
+  margin-bottom: -8px;
+}
 </style>
