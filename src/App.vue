@@ -10,9 +10,8 @@
     </q-header>
 
     <q-drawer v-model="leftDrawerOpen" side="left" overlay behavior="mobile" bordered>
-      <router-link to="/compra">Compra</router-link><br />
-      <router-link to="/venta">Venta</router-link><br />
-      <router-link to="/">Login</router-link>
+      <router-link class="b" to="/compra">Compra</router-link><br />
+      <router-link class="b" to="/">Venta</router-link>
     </q-drawer>
 
     <q-page-container class="page">      
@@ -42,3 +41,10 @@ const toggleLeftDrawer = () => {
 };
 
 </script>
+
+<style scoped>
+.b {
+    color: black !important;
+}
+
+</style>
