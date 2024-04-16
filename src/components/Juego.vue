@@ -77,29 +77,42 @@ const tipoTraduccion = {
 
 const traerProximoPokemon = async () => {
     try {
-        if (!puedeMostrarNuevoPokemon.value) {
-            mostrarNotificacion("Debes adivinar el Pokémon actual para mostrar otro Pokémon");
-            return;
-        }
-
+        // Obtener un número de Pokémon aleatorio entre 1 y 898
         const numeroPokemon = Math.floor(Math.random() * 898) + 1;
+
+        // Realizar la solicitud HTTP para obtener los datos del Pokémon
         const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${numeroPokemon}`);
         const data = response.data;
+
+        // Actualizar los datos del Pokémon
         pokemon.value.name = data.name;
         pokemon.value.id = data.id;
         pokemon.value.stats = data.stats;
         pokemon.value.sprites = data.sprites;
         pokemon.value.height = data.height;
         pokemon.value.weight = data.weight;
-        pokemon.value.types = data.types.map((type) => {
+        
+        // Mapear y traducir los tipos después de obtener los datos del Pokémon
+        pokemon.value.types = data.types.map(type => {
             return { type: { name: tipoTraduccion[type.type.name] || type.type.name } };
         });
-        mostrarDatos.value = true;
-        puedeMostrarNuevoPokemon.value = false;
-        console.log("Nombre del Pokémon a adivinar:", pokemon.value.name);
+
+        // Restablecer el brillo de las imágenes y gifs del Pokémon a blanco y negro
+        pokemonColor.value = false;
+
         // Limpiar el contenido del input
         nombreIngresado.value = "";
+        
+        // Mostrar los datos del Pokémon
+        mostrarDatos.value = true;
+
+        // Deshabilitar la opción de mostrar un nuevo Pokémon hasta que se adivine el actual
+        puedeMostrarNuevoPokemon.value = false;
+
+        // Mostrar el nombre del Pokémon en la consola para depuración
+        console.log("Nombre del Pokémon a adivinar:", pokemon.value.name);
     } catch (error) {
+        // Manejar cualquier error de la solicitud HTTP
         console.error(error);
     }
 };
@@ -110,10 +123,15 @@ const verificarPokemon = () => {
     if (nombreIngresadoLowerCase === nombrePokemonLowerCase) {
         mostrarNotificacion("¡Felicidades! Adivinaste el Pokémon", "positive");
         puedeMostrarNuevoPokemon.value = true; // Habilitar el botón "Nuevo Pokémon" nuevamente
+        // Mostrar las imágenes y gifs a color si se adivina correctamente
+        pokemonColor.value = true;
     } else {
         mostrarNotificacion("Vuelve a intentar", "negative");
+        // Si no se adivina correctamente, las imágenes y gifs siguen en blanco y negro
+        pokemonColor.value = false;
     }
 };
+
 
 const getShinySpriteUrl = (sprites) => {
     if (sprites && sprites.other && sprites.other["official-artwork"] && sprites.other["official-artwork"].front_default) {
