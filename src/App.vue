@@ -11,10 +11,10 @@
 
     <q-drawer v-model="leftDrawerOpen" side="left" overlay behavior="mobile" bordered>
       <div class="drawer-links">
-        <img src="./img/pikachuDeTela.png">
-          <router-link class="b" to="/pokedex">Pokedex</router-link><br />
-          <router-link class="b" to="/">Juego</router-link>
-        </div>
+        <router-link class="b" to="/pokedex">Pokedex</router-link><br />
+        <router-link class="b" to="/">Juego</router-link>
+        <img class="pkachu" src="./img/pikachuDeTela.png">
+      </div>
     </q-drawer>
 
     <q-page-container class="page">
@@ -30,11 +30,11 @@
       </q-toolbar>
     </q-footer>
     <div class="background-container">
-    <!-- Imágenes duplicadas generadas dinámicamente -->
-    <div class="displayFlex" v-for="index in numberOfImages" :key="index">
-      <img class="barra" src="./img/barra.png">
+      <!-- Imágenes duplicadas generadas dinámicamente -->
+      <div class="displayFlex" v-for="index in numberOfImages" :key="index">
+        <img class="barra" src="./img/barra.png">
+      </div>
     </div>
-  </div>
 
   </q-layout>
 </template>
@@ -51,9 +51,14 @@ const numberOfImages = ref(1000);
 </script>
 
 <style scoped>
+.pkachu {
+  margin-top: 90px;
+  transform: rotate(-20deg); /* Rotación de 90 grados en sentido contrario a las agujas del reloj (hacia la izquierda) */
+}
+
 .background-container {
   border: 1px solid red;
-  height: 20vh;  
+  height: 20vh;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -80,6 +85,7 @@ const numberOfImages = ref(1000);
   font-size: 20px !important;
   /* Centra los enlaces horizontalmente */
   overflow: hidden;
+  margin-top: 20px;
 }
 
 .copy {
