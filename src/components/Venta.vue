@@ -105,11 +105,14 @@ const getShinySpriteUrl = (sprites) => {
 };
 
 // Función para traer los datos del próximo Pokémon
+// Importar axios previamente, por ejemplo: import axios from 'axios';
+
+// Función para traer los datos del próximo Pokémon con axios
 const traerProximoPokemon = async () => {
     try {
         const numeroPokemon = Math.floor(Math.random() * 898) + 1; // Obtener un número de Pokémon aleatorio entre 1 y 898
-        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${numeroPokemon}`);
-        const data = await response.json();
+        const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${numeroPokemon}`);
+        const data = response.data;
         pokemon.value.name = data.name;
         pokemon.value.id = data.id;
         pokemon.value.stats = data.stats;
@@ -123,7 +126,7 @@ const traerProximoPokemon = async () => {
 
         mostrarDatos.value = true;
     } catch (error) {
-        console.log(error);
+        console.error(error);
     }
 };
 
