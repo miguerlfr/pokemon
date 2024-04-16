@@ -10,11 +10,13 @@
     </q-header>
 
     <q-drawer v-model="leftDrawerOpen" side="left" overlay behavior="mobile" bordered>
-      <router-link class="b" to="/compra">Compra</router-link><br />
-      <router-link class="b" to="/">Venta</router-link>
+      <div class="drawer-links">
+        <router-link class="b" to="/pokedex">Pokedex</router-link><br />
+        <router-link class="b" to="/">Juego</router-link>
+      </div>
     </q-drawer>
 
-    <q-page-container class="page">      
+    <q-page-container class="page">
       <router-view />
     </q-page-container>
 
@@ -44,7 +46,12 @@ const toggleLeftDrawer = () => {
 
 <style scoped>
 .b {
-    color: black !important;
+  color: black !important;
+}
+
+.drawer-links {
+  text-align: center !important;
+  font-size: 20px !important;; /* Centra los enlaces horizontalmente */
 }
 
 </style>
