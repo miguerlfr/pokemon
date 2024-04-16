@@ -213,7 +213,7 @@ traerProximoPokemon();
 }
 
 .pageHijo {
-    border: 1px solid red;
+    border: 1px solid black;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -258,7 +258,7 @@ traerProximoPokemon();
 .stat-bar {
     /* Ancho máximo de la barra de estadísticas */
     height: 20px;
-    background-color: red;
+    background-color: rgba(0, 0, 255, 0.397);
     flex-grow: 1;
     border: transparent;
     /* Hace que las barras se expandan automáticamente */
